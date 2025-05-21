@@ -36,7 +36,7 @@ const routes = {
    * DELETE  /messages/:id           - Delete message
    * ```
    */
-  messages: "",
+  messages: undefined,
 };
 
 export default routes;
