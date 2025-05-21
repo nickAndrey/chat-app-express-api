@@ -1,4 +1,5 @@
 import roomsCreate from "./rooms/rooms-create.js";
+import roomsDelete from "./rooms/rooms-delete.js";
 import roomsGetAllByUserId from "./rooms/rooms-get-all-by-user-id.js";
 import roomsGetById from "./rooms/rooms-get-by-id.js";
 import roomsUpdate from "./rooms/rooms-update.js";
@@ -31,7 +32,7 @@ const controller = {
     getById: roomsGetById,
     getAllByUserId: roomsGetAllByUserId,
     update: roomsUpdate,
-    delete: () => {},
+    delete: roomsDelete,
     addMember: () => {},
     removeMember: () => {},
   },

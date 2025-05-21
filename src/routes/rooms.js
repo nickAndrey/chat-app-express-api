@@ -5,8 +5,8 @@ const router = Router();
 
 router.post("/rooms", controller.rooms.create);
 router.get("/rooms/:id", controller.rooms.getById);
-router.get("/users/:userId/rooms", () => {});
-router.put("/rooms/:id", () => {});
+router.get("/users/:userId/rooms", controller.rooms.getAllByUserId);
+router.put("/rooms/:id", controller.rooms.update);
 router.delete("/rooms/:id", () => {});
 router.post("/rooms/:id/members", () => {});
 router.delete("/rooms/:id/members/:uid", () => {});
