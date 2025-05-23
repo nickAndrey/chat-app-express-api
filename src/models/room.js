@@ -1,4 +1,4 @@
-import { model, Schema } from "mongoose";
+import { model, Schema } from 'mongoose';
 
 const roomSchema = new Schema(
   {
@@ -13,16 +13,17 @@ const roomSchema = new Schema(
     members: [
       {
         type: Schema.Types.ObjectId,
-        ref: "User",
+        ref: 'User',
+        required: true,
       },
     ],
     createdBy: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User',
       required: true,
     },
   },
   { timestamps: true }
 );
 
-export default model("Room", roomSchema);
+export default model('Room', roomSchema);

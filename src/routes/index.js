@@ -1,11 +1,11 @@
-import messagesRoutes from "./messages.js";
-import roomsRoutes from "./rooms.js";
-import usersRoutes from "./users.js";
+import messagesRoutes from './messages.js';
+import roomsRoutes from './rooms.js';
+import usersRoutes from './users.js';
 
 const routes = {
   /**
    * #### User Endpoints
-   * ```
+   * ```md
    * POST    /users                  - Create user
    * GET     /users/:id              - Get user info
    * GET     /users                  - List/search users
@@ -17,7 +17,7 @@ const routes = {
 
   /**
    * #### Room Endpoints
-   * ```
+   * ```md
    * POST    /rooms                  - Create new room
    * GET     /rooms/:id              - Get room info
    * GET     /users/:userId/rooms    - Get rooms user is in
@@ -31,7 +31,7 @@ const routes = {
 
   /**
    * #### Message Endpoints
-   * ```
+   * ```md
    * POST    /messages               - Send a message
    * GET     /rooms/:id/messages     - Get messages in room
    * DELETE  /messages/:id           - Delete message
