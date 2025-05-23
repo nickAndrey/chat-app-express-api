@@ -1,3 +1,4 @@
+import messagesRoutes from "./messages.js";
 import roomsRoutes from "./rooms.js";
 import usersRoutes from "./users.js";
 
@@ -36,7 +37,7 @@ const routes = {
    * DELETE  /messages/:id           - Delete message
    * ```
    */
-  messages: undefined,
+  messages: messagesRoutes,
 };
 
 export default routes;
