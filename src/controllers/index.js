@@ -26,7 +26,6 @@ const controller = {
     refreshToken: authRefreshToken,
   },
   users: {
-    create: userCreate,
     getAll: userGetAll,
     getById: userGetById,
     update: userUpdate,
