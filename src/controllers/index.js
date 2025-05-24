@@ -14,7 +14,6 @@ import roomsGetById from './rooms/rooms-get-by-id.js';
 import roomsRemoveMember from './rooms/rooms-remove-member.js';
 import roomsUpdate from './rooms/rooms-update.js';
 
-import userCreate from './users/user-create.js';
 import userGetAll from './users/user-get-all.js';
 import userGetById from './users/user-get-by-id.js';
 import userUpdate from './users/user-update.js';
