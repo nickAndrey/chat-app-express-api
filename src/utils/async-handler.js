@@ -4,6 +4,7 @@
  * Usage:
  * ```js
  *   import asyncHandler from './utils/async-handler.js';
+ *   import { createError } from './utils/error-helpers.js';
  *
  *   router.get('/users/:id', asyncHandler(async (req, res) => {
  *     const user = await User.findById(req.params.id);

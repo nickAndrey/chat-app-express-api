@@ -14,7 +14,7 @@ const userUpdate = asyncHandler(async (req, res) => {
 
   if (!updatedUser) throw createError('User was not found');
   res.status(200).json({
-    message: 'success',
+    msg: 'success',
     data: {
       id: updatedUser._id,
       username: updatedUser.username,

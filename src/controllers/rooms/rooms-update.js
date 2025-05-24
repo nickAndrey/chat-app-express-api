@@ -1,5 +1,6 @@
-import model from "../../models/index.js";
-import asyncHandler from "../../utils/async-handler.js";
+import model from '../../models/index.js';
+import asyncHandler from '../../utils/async-handler.js';
+import { createError } from '../../utils/error-helpers.js';
 
 const roomsUpdate = asyncHandler(async (req, res) => {
   const { name } = req.body;
@@ -7,8 +8,8 @@ const roomsUpdate = asyncHandler(async (req, res) => {
     name,
   });
 
-  if (!updatedRoom) throw createError("Room was not found");
-  res.status(200).json({ message: "success", data: updatedRoom });
+  if (!updatedRoom) throw createError('Room was not found');
+  res.status(200).json({ msg: 'success', data: updatedRoom });
 });
 
 export default roomsUpdate;

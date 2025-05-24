@@ -1,10 +1,10 @@
-import { handleUnknownError } from "../utils/error-helpers.js";
+import { handleUnknownError } from '../utils/error-helpers.js';
 
 function errorHandler(err, req, res, next) {
   const error = handleUnknownError(err);
 
-  console.error("Error:", {
-    message: error.message,
+  console.error('Error:', {
+    msg: error.message,
     code: error.code,
     status: error.status,
     cause: error.cause,
@@ -12,7 +12,7 @@ function errorHandler(err, req, res, next) {
 
   res.status(error.status).json({
     error: {
-      message: error.message,
+      msg: error.message,
       code: error.code,
     },
   });

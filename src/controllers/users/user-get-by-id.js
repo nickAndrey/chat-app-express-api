@@ -6,7 +6,7 @@ const userGetById = asyncHandler(async (req, res) => {
   const user = await model.USER.findById(req.params.id);
   if (!user) throw createError('User was not found');
   return res.status(200).json({
-    message: 'success',
+    msg: 'success',
     data: {
       id: user._id,
       username: user.username,
