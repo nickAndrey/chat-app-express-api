@@ -18,6 +18,7 @@ const routes = {
    * #### User Endpoints
    * ```md
    * GET     /users/:id              - Get user info
+   * GET     /users/:id/rooms        - Get rooms user is in
    * GET     /users                  - List/search users
    * PUT     /users/:id              - Update user
    * DELETE  /users/:id              - Delete user (not implemented)
@@ -30,7 +31,6 @@ const routes = {
    * ```md
    * POST    /rooms                  - Create new room
    * GET     /rooms/:id              - Get room info
-   * GET     /users/:userId/rooms    - Get rooms user is in
    * PUT     /rooms/:id              - Edit room info
    * DELETE  /rooms/:id              - Delete room
    * POST    /rooms/:id/members      - Add member to room

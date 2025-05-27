@@ -9,7 +9,6 @@ import messagesGetAll from './messages/messages-get-all.js';
 import roomsAddMember from './rooms/rooms-add-member.js';
 import roomsCreate from './rooms/rooms-create.js';
 import roomsDelete from './rooms/rooms-delete.js';
-import roomsGetAllByUserId from './rooms/rooms-get-all-by-user-id.js';
 import roomsGetById from './rooms/rooms-get-by-id.js';
 import roomsRemoveMember from './rooms/rooms-remove-member.js';
 import roomsUpdate from './rooms/rooms-update.js';
@@ -17,6 +16,8 @@ import roomsUpdate from './rooms/rooms-update.js';
 import userGetAll from './users/user-get-all.js';
 import userGetById from './users/user-get-by-id.js';
 import userUpdate from './users/user-update.js';
+import usersGetAllRelatedRooms from './users/users-get-all-related-rooms.js';
+import usersSearch from './users/users-search.js';
 
 const controller = {
   auth: {
@@ -25,14 +26,15 @@ const controller = {
     refreshToken: authRefreshToken,
   },
   users: {
+    search: usersSearch,
     getAll: userGetAll,
     getById: userGetById,
     update: userUpdate,
+    getAllRelatedRooms: usersGetAllRelatedRooms,
   },
   rooms: {
     create: roomsCreate,
     getById: roomsGetById,
-    getAllByUserId: roomsGetAllByUserId,
     update: roomsUpdate,
     delete: roomsDelete,
     addMember: roomsAddMember,

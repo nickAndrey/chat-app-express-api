@@ -26,4 +26,17 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
+userSchema.index(
+  {
+    username: 'text',
+    email: 'text',
+  },
+  {
+    weights: {
+      username: 10,
+      email: 5,
+    },
+  }
+);
+
 export default model('User', userSchema);

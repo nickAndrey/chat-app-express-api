@@ -15,6 +15,7 @@ const roomSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: true,
+        min: [2, 'There have to be at least 2 members'],
       },
     ],
     createdBy: {
