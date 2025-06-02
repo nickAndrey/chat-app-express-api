@@ -6,9 +6,7 @@ const roomsAddMember = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const { userId } = req.body;
 
-  if (!userId) {
-    throw createError('User id is required');
-  }
+  if (!userId) throw createError('Field missed: userId');
 
   const updatedRoom = await model.ROOM.findByIdAndUpdate(
     id,
@@ -16,9 +14,7 @@ const roomsAddMember = asyncHandler(async (req, res) => {
     { new: true }
   );
 
-  if (!updatedRoom) {
-    throw createError('Room not found');
-  }
+  if (!updatedRoom) throw createError('Room was not found');
 
   res.status(200).json({ msg: 'success', data: updatedRoom });
 });

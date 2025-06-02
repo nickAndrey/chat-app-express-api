@@ -23,8 +23,25 @@ const roomSchema = new Schema(
       ref: 'User',
       required: true,
     },
+    deletedFor: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        default: [],
+      },
+    ],
   },
   { timestamps: true }
 );
+
+roomSchema.set('toJSON', {
+  virtuals: true,
+  versionKey: false,
+  transform: (_, ret) => {
+    ret.id = ret._id;
+    delete ret._id;
+    return ret;
+  },
+});
 
 export default model('Room', roomSchema);

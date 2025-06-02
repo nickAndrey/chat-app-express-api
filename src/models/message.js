@@ -1,15 +1,15 @@
-import { model, Schema } from "mongoose";
+import { model, Schema } from 'mongoose';
 
 const messageSchema = new Schema(
   {
     roomId: {
       type: Schema.Types.ObjectId,
-      ref: "Room",
+      ref: 'Room',
       required: true,
     },
     senderId: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User',
       required: true,
     },
     content: {
@@ -18,11 +18,28 @@ const messageSchema = new Schema(
     },
     type: {
       type: String,
-      enum: ["text", "image", "file"],
-      default: "text",
+      enum: ['text', 'image', 'file'],
+      default: 'text',
     },
+    hiddenFor: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        default: [],
+      },
+    ],
   },
   { timestamps: true }
 );
 
-export default model("Message", messageSchema);
+messageSchema.set('toJSON', {
+  virtuals: true,
+  versionKey: false,
+  transform: (_, ret) => {
+    ret.id = ret._id;
+    delete ret._id;
+    return ret;
+  },
+});
+
+export default model('Message', messageSchema);

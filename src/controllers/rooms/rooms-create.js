@@ -19,14 +19,13 @@ const roomsCreate = asyncHandler(async (req, res) => {
     throw createError('One or more user IDs are invalid');
   }
 
-  const newRoom = await model.ROOM.create({
-    name,
-    isGroup,
-    members,
-    createdBy,
-  });
+  const newRoom = await model.ROOM.create({ name, isGroup, members, createdBy });
 
-  res.status(200).json({ msg: 'success', data: newRoom });
+  const populatedRoom = await model.ROOM.findById(newRoom._id)
+    .populate('members', 'username email')
+    .populate('createdBy', 'username');
+
+  res.status(200).json({ msg: 'success', data: populatedRoom });
 });
 
 export default roomsCreate;

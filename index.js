@@ -35,7 +35,6 @@ app.use(authenticateToken);
 
 app.use('/api/users', routes.users);
 app.use('/api/rooms', routes.rooms);
-app.use('/api/messages', routes.messages);
 
 app.use(errorHandler);
 

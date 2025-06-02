@@ -9,6 +9,7 @@ const roomsUpdate = asyncHandler(async (req, res) => {
   });
 
   if (!updatedRoom) throw createError('Room was not found');
+
   res.status(200).json({ msg: 'success', data: updatedRoom });
 });
 

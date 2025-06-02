@@ -11,8 +11,6 @@ export const initSocket = (httpServer) => {
   });
 
   IO_INSTANCE.on('connection', (socket) => {
-    console.log('Socket connected:', socket.id);
-
     socket.on('joinRoom', (roomId) => {
       socket.join(roomId);
       console.log(`Socket ${socket.id} joined room ${roomId}`);
