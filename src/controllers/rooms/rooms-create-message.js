@@ -16,6 +16,13 @@ const roomsCreateMessage = asyncHandler(async (req, res) => {
     content,
   });
 
+  await model.ROOM.findByIdAndUpdate(roomId, {
+    $set: {
+      lastMessage: content,
+      updatedAt: new Date(),
+    },
+  });
+
   const io = getIO();
 
   io.to(roomId).emit('newMessage', newMessage);

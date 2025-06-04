@@ -30,6 +30,9 @@ const roomSchema = new Schema(
         default: [],
       },
     ],
+    lastMessage: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

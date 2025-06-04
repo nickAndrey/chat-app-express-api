@@ -5,57 +5,60 @@ import { createError } from '../../utils/error-helpers.js';
 const roomsCreate = asyncHandler(async (req, res) => {
   const { name, isGroup, members, createdBy } = req.body;
 
-  if (!name) throw createError('Missing required field: name');
+  // Validate input
+  if (!name) {
+    throw createError('Missing required field: name');
+  }
 
   if (!Array.isArray(members) || members.length === 0) {
     throw createError('Missing or invalid members array');
   }
 
-  if (!createdBy) throw createError('Missing required field: createdBy');
+  if (!createdBy) {
+    throw createError('Missing required field: createdBy');
+  }
 
-  const user = await model.USER.findById(createdBy);
-  if (!user) throw createError('Invalid user ID');
+  // Include creator in members
+  const allMembers = Array.from(new Set([...members, createdBy]));
 
-  // Ensure unique members list, including creator
-  const uniqueMembers = Array.from(new Set([...members, createdBy]));
-
-  const validUsers = await model.USER.find({ _id: { $in: uniqueMembers } });
-  if (validUsers.length !== uniqueMembers.length) {
+  // Validate all users exist
+  const users = await model.USER.find({ _id: { $in: allMembers } });
+  if (users.length !== allMembers.length) {
     throw createError('One or more user IDs are invalid');
   }
 
-  let room;
-
-  room = await model.ROOM.findOne({
+  // Try to find existing room with same members and type
+  let room = await model.ROOM.findOne({
     isGroup,
-    members: { $all: uniqueMembers, $size: uniqueMembers.length },
+    members: { $all: allMembers, $size: allMembers.length },
   });
 
+  // If exists, "restore" it for this user
   if (room) {
     await model.ROOM.updateOne(
       {
         _id: room._id,
       },
       {
-        $pull: {
-          deletedFor: createdBy,
-        },
+        $pull: { deletedFor: createdBy },
       }
     );
   } else {
+    // Otherwise, create a new room
     room = await model.ROOM.create({
       name,
       isGroup,
-      members: uniqueMembers,
+      members: allMembers,
       createdBy,
     });
   }
 
-  const populatedRoom = await model.ROOM.findById(room._id)
+  // Populate and respond
+  const populated = await model.ROOM.findById(room._id)
     .populate('members', 'username email')
     .populate('createdBy', 'username');
 
-  res.status(200).json({ msg: 'success', data: populatedRoom });
+  res.status(200).json({ msg: 'success', data: populated });
 });
 
 export default roomsCreate;

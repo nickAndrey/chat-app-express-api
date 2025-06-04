@@ -7,15 +7,12 @@ const roomsDeleteMessage = asyncHandler(async (req, res) => {
   const { memberId } = req.body;
 
   if (!memberId) throw createError('Field missed: memberId');
-  if (!messageId) throw createError('Field missed: messageId');
 
-  const result = await model.MESSAGE.findOneAndUpdate(
+  await model.MESSAGE.findOneAndUpdate(
     { roomId, id: messageId },
     { $addToSet: { hiddenFor: memberId } },
     { new: true }
   );
-
-  if (!result) throw createError('Message not found');
 
   res.status(200).json({ msg: 'Message hidden for user', data: null });
 });
